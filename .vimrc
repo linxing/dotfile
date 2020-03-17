@@ -53,10 +53,18 @@ Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'pangloss/vim-javascript'
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'dense-analysis/ale'
 
 " Python
 Plug 'Chiel92/vim-autoformat'
 Plug 'davidhalter/jedi-vim'
+" Plug 'psf/black'
+Plug 'psf/black', { 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1' }
+
+" proto buf uber style
+Plug 'uber/prototool', { 'rtp':'vim/prototool'  }
+
+
 
 call plug#end()
 
@@ -72,7 +80,7 @@ let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:completor_gocode_binary = '/Users/linxing/go/bin/gocode'
-let g:go_bin_path = '/Users/linxing/go/bin'
+" let g:go_bin_path = '/Users/linxing/go/bin'
 let g:move_key_modifier = "C"
 autocmd vimenter * NERDTree
 let g:go_null_module_warning = 0
@@ -90,13 +98,36 @@ map <C-g> :NERDTreeToggle<CR>
 
 " Auto Pep8 format when saving file
 au BufWrite * :Autoformat
+autocmd BufWritePre *.py execute ':Black'
+
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 
 " not auto init python by jedi
-let g:jedi#auto_initialization = 0
+" let g:jedi#auto_initialization = 0
+let g:jedi#popup_on_dot = 0
 
+
+" python static check and code style
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+    \   'python': ['black', 'mypy', 'vulture'],
+\}
+let g:ale_python_vulture_options = '--min-confidence 80 --ignore-names "_ign*" --exclude "*pb2.py,*pb2_grpc.py"'
+let g:ale_python_mypy_options =
+    \ '--ignore-missing-imports --follow-imports skip --disallow-untyped-defs'.' '.
+    \ '--disallow-untyped-decorators --strict-optional --warn-unused-ignores'.' '.
+    \ '--no-implicit-optional --warn-redundant-casts'
+" Only run fixers named in ale_fixers settings.
+let g:ale_fixers_explicit = 1
+let g:ale_fixers = {
+    \   'python': ['black'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+    \   'proto': ['prototool'],
+\}
 
 let g:lightline = { 'colorscheme': 'one',}
 let g:go_version_warning = 0
