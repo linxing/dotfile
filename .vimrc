@@ -19,6 +19,7 @@ set guifont=hack:h13
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 set signcolumn=yes
+set foldmethod=manual
 
 "goimports settings
 "autocmd BufWritePre *.go :Fmt
@@ -27,7 +28,7 @@ set signcolumn=yes
 set tabstop=4
 set showmatch
 set ruler
-set cursorline
+"set cursorline
 set cursorcolumn
 set relativenumber
 set number
@@ -42,7 +43,6 @@ set smartcase
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'aserebryakov/vim-todo-lists'
-Plug 'maralla/completor.vim'
 Plug 'fatih/vim-go'
 Plug 'airblade/vim-gitgutter'
 Plug 'luochen1990/rainbow'
