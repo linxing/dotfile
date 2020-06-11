@@ -45,7 +45,8 @@ Plug 'luochen1990/rainbow'
 Plug 'stephpy/vim-yaml'
 Plug 'matze/vim-move'
 Plug 'Townk/vim-autoclose'
-Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'fatih/molokai'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
@@ -61,7 +62,9 @@ call plug#end()
 
 " Set lightline.vim theme
 let g:lightline = { 'colorscheme': 'one',}
-color dracula
+"color dracula
+color molokai
+let g:molokai_original = 1
 
 " vim-go highlight
 let g:go_highlight_structs = 1
@@ -82,6 +85,10 @@ let g:rainbow_active = 1
 " Set NERDTree for display
 map <C-g> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
+
+" setup easy-align
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
