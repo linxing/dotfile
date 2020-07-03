@@ -57,6 +57,9 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Yggdroot/indentLine'
 Plug 'godlygeek/tabular'
 Plug 'JamshedVesuna/vim-markdown-preview'
+
+Plug 'posva/vim-vue'
+Plug 'ap/vim-css-color'
 let g:indentLine_setColors = 0
 call plug#end()
 
@@ -64,7 +67,7 @@ call plug#end()
 let g:lightline = { 'colorscheme': 'one',}
 "color dracula
 color molokai
-let g:molokai_original = 1
+let g:molokai_original = 2
 
 " vim-go highlight
 let g:go_highlight_structs = 1
@@ -74,6 +77,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_extra_types = 1
+let g:go_fmt_command = "goimports"
 let g:move_key_modifier = "C"
 let g:go_null_module_warning = 0
 
@@ -102,3 +106,8 @@ let g:lightline = { 'colorscheme': 'one',}
 " Markdown preview
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<C-m>'
+
+" fixer npm install -g prettier
+let g:ale_fixter_aliases = {'vue': ['vue', 'javascript']}
+let g:ale_fixers = {'vue': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier'],}
+let g:ale_fix_on_save = 1
