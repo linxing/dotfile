@@ -2,7 +2,6 @@
 filetype plugin on
 filetype on
 set omnifunc=syntaxcomplete#Complete
-" set modelines=0
 set autoread
 set matchtime=1
 set updatetime=100
@@ -12,9 +11,12 @@ set noswapfile
 set nocompatible
 set backspace=2
 set ic
+set undofile
+set undodir=~/.vim/undo-dir/
 " set list
 syntax enable
-set guifont=hack:h13
+"set guifont=hack:h13
+set guifont=Fira\ Code:h13
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 set signcolumn=yes
@@ -34,6 +36,7 @@ set wildmode=longest:list,full
 set hlsearch
 set incsearch
 set smartcase
+set noshowmode
 
 " Pluging
 call plug#begin('~/.vim/plugged')
@@ -45,7 +48,6 @@ Plug 'luochen1990/rainbow'
 Plug 'stephpy/vim-yaml'
 Plug 'matze/vim-move'
 Plug 'Townk/vim-autoclose'
-"Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'fatih/molokai'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
@@ -57,14 +59,16 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Yggdroot/indentLine'
 Plug 'godlygeek/tabular'
 Plug 'JamshedVesuna/vim-markdown-preview'
-
 Plug 'posva/vim-vue'
 Plug 'ap/vim-css-color'
+Plug 'mbbill/undotree'
+"Plug 'bronson/vim-trailing-whitespace'
+"Plug 'dracula/vim', { 'as': 'dracula' }
 let g:indentLine_setColors = 0
 call plug#end()
 
 " Set lightline.vim theme
-let g:lightline = { 'colorscheme': 'one',}
+let g:lightline = { 'colorscheme': 'wombat'}
 "color dracula
 color molokai
 let g:molokai_original = 2
@@ -90,6 +94,8 @@ let g:rainbow_active = 1
 map <C-g> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
+map <C-z> :UndotreeToggle<CR>
+
 " setup easy-align
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
@@ -100,8 +106,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-let g:lightline = { 'colorscheme': 'one',}
-
+let g:lightline = {'colorscheme': 'one',}
 
 " Markdown preview
 let vim_markdown_preview_github=1
@@ -109,5 +114,6 @@ let vim_markdown_preview_hotkey='<C-m>'
 
 " fixer npm install -g prettier
 let g:ale_fixter_aliases = {'vue': ['vue', 'javascript']}
-let g:ale_fixers = {'vue': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier'],}
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'vue': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier'],}
 let g:ale_fix_on_save = 1
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
