@@ -62,6 +62,7 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'posva/vim-vue'
 Plug 'ap/vim-css-color'
 Plug 'mbbill/undotree'
+Plug 'vim-scripts/YankRing.vim'
 "Plug 'bronson/vim-trailing-whitespace'
 "Plug 'dracula/vim', { 'as': 'dracula' }
 let g:indentLine_setColors = 0
@@ -111,6 +112,9 @@ let g:lightline = {'colorscheme': 'one',}
 " Markdown preview
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<C-m>'
+
+" yankring config
+let yankring_min_element_length = 2
 
 " fixer npm install -g prettier
 let g:ale_fixter_aliases = {'vue': ['vue', 'javascript']}
