@@ -4,22 +4,27 @@ filetype on
 set omnifunc=syntaxcomplete#Complete
 set autoread
 set matchtime=1
-set updatetime=100
+set updatetime=50
 set showcmd
-set nobackup
-set noswapfile
 set nocompatible
 set backspace=2
 set ic
 set undofile
 set undodir=~/.vim/undo-dir/
+set noswapfile
+set nobackup
 " set list
 syntax enable
+set hidden
+"set guicursor=
+set termguicolors
+set scrolloff=8
+set cmdheight=2
 "set guifont=hack:h13
 set guifont=Fira\ Code:h13
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
-set signcolumn=yes
+"set signcolumn=yes
 set foldmethod=manual
 
 " Basic Config
@@ -40,6 +45,7 @@ set noshowmode
 
 " Pluging
 call plug#begin('~/.vim/plugged')
+Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-fugitive'
 Plug 'aserebryakov/vim-todo-lists'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -62,11 +68,27 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'posva/vim-vue'
 Plug 'ap/vim-css-color'
 Plug 'mbbill/undotree'
-Plug 'vim-scripts/YankRing.vim'
+Plug 'itchyny/vim-cursorword'
+"Plug 'SirVer/ultisnips'
+Plug 'wakatime/vim-wakatime'
+"Plug 'uber/prototool', { 'rtp':'vim/prototool' }
+"Plug 'honza/vim-snippets'
+"Plug 'vim-scripts/YankRing.vim'
 "Plug 'bronson/vim-trailing-whitespace'
 "Plug 'dracula/vim', { 'as': 'dracula' }
-let g:indentLine_setColors = 0
 call plug#end()
+
+
+" <leader>f will format and fix your current file.
+" Change to PrototoolFormat to only format and not fix.
+"nnoremap <silent> <leader>f :call PrototoolFormatFix()<CR>
+
+let g:indentLine_setColors = 0
+
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsEditSplit="vertical"
 
 " Set lightline.vim theme
 let g:lightline = { 'colorscheme': 'wombat'}
@@ -94,7 +116,6 @@ let g:rainbow_active = 1
 " Set NERDTree for display
 map <C-g> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
-
 map <C-z> :UndotreeToggle<CR>
 
 " setup easy-align
@@ -111,13 +132,21 @@ let g:lightline = {'colorscheme': 'one',}
 
 " Markdown preview
 let vim_markdown_preview_github=1
-let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_hotkey='<C-x>'
 
 " yankring config
-let yankring_min_element_length = 2
+"let yankring_min_element_length = 2
+"map <C-h> :YRShow<CR>
+"
+"prototool
+"let g:ale_linters = {'go': ['golint'], 'proto': ['prototool-lint'],}
+"let g:ale_lint_on_text_changed = 1
 
 " fixer npm install -g prettier
 let g:ale_fixter_aliases = {'vue': ['vue', 'javascript']}
 let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'vue': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier'],}
 let g:ale_fix_on_save = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
