@@ -54,10 +54,10 @@ Plug 'luochen1990/rainbow'
 Plug 'stephpy/vim-yaml'
 Plug 'matze/vim-move'
 Plug 'Townk/vim-autoclose'
-Plug 'fatih/molokai'
+"Plug 'fatih/molokai'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -68,14 +68,24 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'posva/vim-vue'
 Plug 'ap/vim-css-color'
 Plug 'mbbill/undotree'
-Plug 'itchyny/vim-cursorword'
+"Plug 'itchyny/vim-cursorword'
 "Plug 'SirVer/ultisnips'
 Plug 'wakatime/vim-wakatime'
 "Plug 'uber/prototool', { 'rtp':'vim/prototool' }
 "Plug 'honza/vim-snippets'
 "Plug 'vim-scripts/YankRing.vim'
 "Plug 'bronson/vim-trailing-whitespace'
+"Plug 'mattn/emmet-vim'
+Plug 'preservim/tagbar'
+Plug 'masukomi/vim-markdown-folding'
 "Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'Rigellute/rigel'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+"bazel
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
 call plug#end()
 
 
@@ -83,18 +93,19 @@ call plug#end()
 " Change to PrototoolFormat to only format and not fix.
 "nnoremap <silent> <leader>f :call PrototoolFormatFix()<CR>
 
-let g:indentLine_setColors = 0
+"let g:indentLine_setColors = 0
 
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 "let g:UltiSnipsEditSplit="vertical"
 
-" Set lightline.vim theme
 let g:lightline = { 'colorscheme': 'wombat'}
+" Set lightline.vim theme
 "color dracula
-color molokai
-let g:molokai_original = 2
+color rigel
+"color molokai
+"let g:molokai_original = 2
 
 " vim-go highlight
 let g:go_highlight_structs = 1
@@ -107,6 +118,7 @@ let g:go_highlight_extra_types = 1
 let g:go_fmt_command = "goimports"
 let g:move_key_modifier = "C"
 let g:go_null_module_warning = 0
+"let g:godef_split=2
 
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
@@ -116,11 +128,16 @@ let g:rainbow_active = 1
 " Set NERDTree for display
 map <C-g> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
+let g:NERDTreeWinSize=20
 map <C-z> :UndotreeToggle<CR>
 
 " setup easy-align
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+
+" tagbar
+nmap <F1> :TagbarToggle<CR>
+let g:tagbar_width=40
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -128,7 +145,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-let g:lightline = {'colorscheme': 'one',}
+let g:lightline = {'colorscheme': 'rigel',}
 
 " Markdown preview
 let vim_markdown_preview_github=1
@@ -150,3 +167,8 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+
+
+" fzf config
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+nnoremap <silent> <c-p> :Files <CR>
