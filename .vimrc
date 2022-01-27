@@ -24,7 +24,8 @@ set cmdheight=2
 set guifont=Fira\ Code:h13
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
-"set signcolumn=yes
+set signcolumn=yes
+"set foldmethod=syntax
 set foldmethod=manual
 
 " Basic Config
@@ -47,7 +48,7 @@ set noshowmode
 call plug#begin('~/.vim/plugged')
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-fugitive'
-Plug 'aserebryakov/vim-todo-lists'
+"Plug 'aserebryakov/vim-todo-lists'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'airblade/vim-gitgutter'
 Plug 'luochen1990/rainbow'
@@ -65,19 +66,24 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Yggdroot/indentLine'
 Plug 'godlygeek/tabular'
 Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'posva/vim-vue'
-Plug 'ap/vim-css-color'
+"Plug 'posva/vim-vue'
+"Plug 'ap/vim-css-color'
 Plug 'mbbill/undotree'
 "Plug 'itchyny/vim-cursorword'
 "Plug 'SirVer/ultisnips'
 Plug 'wakatime/vim-wakatime'
 "Plug 'uber/prototool', { 'rtp':'vim/prototool' }
-"Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 "Plug 'vim-scripts/YankRing.vim'
 "Plug 'bronson/vim-trailing-whitespace'
 "Plug 'mattn/emmet-vim'
 Plug 'preservim/tagbar'
-Plug 'masukomi/vim-markdown-folding'
+"Plug 'arcticicestudio/nord-vim'
+"Plug 'rakr/vim-one'
+Plug 'fioncat/vim-oceanicnext'
+"Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'masukomi/vim-markdown-folding'
 "Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Rigellute/rigel'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -86,6 +92,9 @@ Plug 'junegunn/fzf.vim'
 "bazel
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
+Plug 'ruanyl/vim-gh-line'
+
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 
@@ -100,10 +109,12 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 "let g:UltiSnipsEditSplit="vertical"
 
+let g:rigel_lightline = 1
 let g:lightline = { 'colorscheme': 'wombat'}
 " Set lightline.vim theme
 "color dracula
-color rigel
+colorscheme OceanicNext
+set background=dark
 "color molokai
 "let g:molokai_original = 2
 
@@ -128,7 +139,8 @@ let g:rainbow_active = 1
 " Set NERDTree for display
 map <C-g> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
-let g:NERDTreeWinSize=20
+let NERDTreeMinimalUI=1
+let g:NERDTreeWinSize=45
 map <C-z> :UndotreeToggle<CR>
 
 " setup easy-align
@@ -138,6 +150,9 @@ xmap ga <Plug>(EasyAlign)
 " tagbar
 nmap <F1> :TagbarToggle<CR>
 let g:tagbar_width=40
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -171,4 +186,19 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 
 " fzf config
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:python3_host_prog = "/usr/bin/python3"
 nnoremap <silent> <c-p> :Files <CR>
+
+" disable Page Up/Down
+map <PageUp> <Nop>
+map <PageDown> <Nop>
+
+" disable backspace/delete
+inoremap <BS> <Nop>
+inoremap <Del> <Nop>
+
+" paste
+xnoremap p pgvy
+
+let g:go_fmt_experimental = 1
+let g:coc_global_extensions = ['coc-tsserver']
