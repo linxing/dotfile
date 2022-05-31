@@ -1,6 +1,7 @@
 " Configuration file for vim
 filetype plugin on
 filetype on
+set maxmempattern=2000
 set omnifunc=syntaxcomplete#Complete
 set autoread
 set matchtime=1
@@ -26,6 +27,7 @@ au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 set signcolumn=yes
 "set foldmethod=syntax
+"set foldlevelstart=99
 set foldmethod=manual
 
 " Basic Config
@@ -70,7 +72,6 @@ Plug 'JamshedVesuna/vim-markdown-preview'
 "Plug 'ap/vim-css-color'
 Plug 'mbbill/undotree'
 "Plug 'itchyny/vim-cursorword'
-"Plug 'SirVer/ultisnips'
 Plug 'wakatime/vim-wakatime'
 "Plug 'uber/prototool', { 'rtp':'vim/prototool' }
 Plug 'honza/vim-snippets'
@@ -85,7 +86,7 @@ Plug 'fioncat/vim-oceanicnext'
 "Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'masukomi/vim-markdown-folding'
 "Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'Rigellute/rigel'
+"Plug 'Rigellute/rigel'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -95,6 +96,8 @@ Plug 'bazelbuild/vim-bazel'
 Plug 'ruanyl/vim-gh-line'
 
 Plug 'leafgarland/typescript-vim'
+
+"Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
 
 
@@ -160,7 +163,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-let g:lightline = {'colorscheme': 'rigel',}
+let g:lightline = {'colorscheme': 'rigel','active': {'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]}, 'component_function': {'gitbranch': 'FugitiveHead'}}
 
 " Markdown preview
 let vim_markdown_preview_github=1
@@ -202,3 +205,7 @@ xnoremap p pgvy
 
 let g:go_fmt_experimental = 1
 let g:coc_global_extensions = ['coc-tsserver']
+
+"
+set splitright
+
