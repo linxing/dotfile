@@ -1,7 +1,7 @@
-" Configuration file for vim
+ "Configuration file for vim
 filetype plugin on
 filetype on
-set maxmempattern=2000
+set maxmempattern=2000000
 set omnifunc=syntaxcomplete#Complete
 set autoread
 set matchtime=1
@@ -68,10 +68,11 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Yggdroot/indentLine'
 Plug 'godlygeek/tabular'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'mhinz/vim-startify'
 "Plug 'posva/vim-vue'
 "Plug 'ap/vim-css-color'
 Plug 'mbbill/undotree'
-"Plug 'itchyny/vim-cursorword'
+Plug 'itchyny/vim-cursorword'
 Plug 'wakatime/vim-wakatime'
 "Plug 'uber/prototool', { 'rtp':'vim/prototool' }
 Plug 'honza/vim-snippets'
@@ -82,17 +83,22 @@ Plug 'SirVer/ultisnips'
 Plug 'preservim/tagbar'
 "Plug 'arcticicestudio/nord-vim'
 "Plug 'rakr/vim-one'
-Plug 'fioncat/vim-oceanicnext'
-"Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'fioncat/vim-oceanicnext'
+Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'masukomi/vim-markdown-folding'
-"Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'Rigellute/rigel'
+Plug 'Rigellute/rigel'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+"Plug 'simnalamburt/vim-mundo'
+"Plug 'rcarriga/nvim-notify'
+"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
 
 "bazel
 Plug 'google/vim-maktaba'
-Plug 'bazelbuild/vim-bazel'
+"Plug 'bazelbuildivim-bazel'
 Plug 'ruanyl/vim-gh-line'
 
 Plug 'leafgarland/typescript-vim'
@@ -110,20 +116,21 @@ call plug#end()
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="vertical"
 
 let g:rigel_lightline = 1
-let g:lightline = { 'colorscheme': 'wombat'}
+let g:lightline = { 'colorscheme': 'dracula', 'component_function': {'gitbranch': 'FugitiveHead'}}
 " Set lightline.vim theme
 "color dracula
-colorscheme OceanicNext
-set background=dark
+colorscheme dracula
+"set background=dark
 "color molokai
 "let g:molokai_original = 2
 
 " vim-go highlight
 let g:go_highlight_structs = 1
 let g:go_highlight_methods = 1
+let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
@@ -142,8 +149,9 @@ let g:rainbow_active = 1
 " Set NERDTree for display
 map <C-g> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
-let NERDTreeMinimalUI=1
+"let NERDTreeMinimalUI=1
 let g:NERDTreeWinSize=45
+let NERDChristmasTree=1
 map <C-z> :UndotreeToggle<CR>
 
 " setup easy-align
@@ -163,7 +171,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-let g:lightline = {'colorscheme': 'rigel','active': {'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]}, 'component_function': {'gitbranch': 'FugitiveHead'}}
+"let g:lightline = {'colorscheme': 'rigel','active': {'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]}, 'component_function': {'gitbranch': 'FugitiveHead'}}
 
 " Markdown preview
 let vim_markdown_preview_github=1
@@ -188,7 +196,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 
 
 " fzf config
-let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:fzf_preview_window = ['right:70%', 'ctrl-/']
 let g:python3_host_prog = "/usr/bin/python3"
 nnoremap <silent> <c-p> :Files <CR>
 
@@ -208,4 +216,3 @@ let g:coc_global_extensions = ['coc-tsserver']
 
 "
 set splitright
-
