@@ -1,55 +1,52 @@
+# `env` 下的所有键值对将会被添加为环境变量
+import:
+  - ~/.config/alacritty/themes/themes/cyber_punk_neon.yaml
 env:
+  # TERM variable
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color
 
+live_config_reload: true
+
 window:
-    #decorations: "none"
+  # 窗口尺寸大小（配置变更需要重启生效）
+  #
+  # 终端显示的列和行的数量。列的数量至少是 2，如果设置为 0 那么会使用窗口管理器决定的大小。
   dimensions:
     columns: 120
     lines: 30
+  opacity: 0.92
 
-background_opacity: 0.95
+title: Booom
 
+startup_mode: Maximized
+
+# Theme https://github.com/alacritty/alacritty-theme
+#
 scrolling:
-  # maximum number of lines in the scrollback buffer. Specifying '0' will
-  # disable scrolling.
-  history: 0
-
-  # Number of lines the viewport will move for every line scrolled when
-  # scrollback is enabled (history > 0).
+  history: 10000
   multiplier: 3
 
-key_bindings:
-  - { key: V,        mods: Command,       action: Paste                        }
-  - { key: C,        mods: Command,       action: Copy                         }
 
-colors:
-  # Default colors
-  primary:
-    background: '0x002635'
-    foreground: '0xe6e6dc'
+url:
+  modifiers: Command
 
-  # Normal colors
+mouse:
+  hide_when_typing: true
+
+font:
+  size: 13
+
   normal:
-    black:   '0x00384d'
-    red:     '0xc43061'
-    green:   '0x7fc06e'
-    yellow:  '0xf08e48'
-    blue:    '0x1c8db2'
-    magenta: '0xc694ff'
-    cyan:    '0x00cccc'
-    white:   '0x77929e'
+    family: Droid Sans Mono
+    style: Regular
 
-  # Bright colors
-  bright:
-    black:   '0x517f8d'
-    red:     '0xff5a67'
-    green:   '0x9cf087'
-    yellow:  '0xffcc1b'
-    blue:    '0x7eb2dd'
-    magenta: '0xfb94ff'
-    cyan:    '0x00ffff'
-    white:   '0xb7cff9'
+  bold:
+    family: Droid Sans Mono
 
-  cursor:
-    text: "0x002635"
-    cursor: "0xffcc1b"
+  italic:
+    family: Droid Sans Mono
