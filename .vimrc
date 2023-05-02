@@ -1,6 +1,8 @@
  "Configuration file for vim
 filetype plugin on
 filetype on
+"set mouse+=a
+set lazyredraw
 set maxmempattern=2000000
 set omnifunc=syntaxcomplete#Complete
 set autoread
@@ -22,7 +24,7 @@ set termguicolors
 set scrolloff=8
 set cmdheight=2
 "set guifont=hack:h13
-set guifont=Fira\ Code:h13
+set guifont=Droid\Sans\Mono:h13
 au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
 au BufWrite /private/etc/pw.* set nowritebackup nobackup
 set signcolumn=yes
@@ -67,7 +69,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/vim-easy-align'
 Plug 'Yggdroot/indentLine'
 Plug 'godlygeek/tabular'
-Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'mhinz/vim-startify'
 "Plug 'posva/vim-vue'
 "Plug 'ap/vim-css-color'
@@ -89,6 +91,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Rigellute/rigel'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'rust-lang/rust.vim'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 "Plug 'simnalamburt/vim-mundo'
@@ -102,6 +105,8 @@ Plug 'google/vim-maktaba'
 Plug 'ruanyl/vim-gh-line'
 
 Plug 'leafgarland/typescript-vim'
+Plug 'nvim-tree/nvim-web-devicons'
+"Plug 'romgrk/barbar.nvim'
 
 "Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
@@ -174,8 +179,24 @@ nmap <silent> gr <Plug>(coc-references)
 "let g:lightline = {'colorscheme': 'rigel','active': {'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]}, 'component_function': {'gitbranch': 'FugitiveHead'}}
 
 " Markdown preview
-let vim_markdown_preview_github=1
-let vim_markdown_preview_hotkey='<C-x>'
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 0
+
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
+let g:mkdp_auto_close = 1
+
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 1
+let g:mkdp_browser = ''
+" afater install then   :call mkdp#util#install() manually
+
+nmap <C-x> <Plug>MarkdownPreview
 
 " yankring config
 "let yankring_min_element_length = 2
@@ -191,7 +212,7 @@ let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'vue': ['
 let g:ale_fix_on_save = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-let g:vimwiki_list = [{'path': '~/vimwiki/',
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 
@@ -211,8 +232,14 @@ inoremap <Del> <Nop>
 " paste
 xnoremap p pgvy
 
+" rust
 let g:go_fmt_experimental = 1
 let g:coc_global_extensions = ['coc-tsserver']
-
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
 "
 set splitright
+
+" command shortcut
+cnoreabbrev BL Git blame
