@@ -1,6 +1,6 @@
 # `env` 下的所有键值对将会被添加为环境变量
 import:
-  - ~/.config/alacritty/themes/themes/cyber_punk_neon.yaml
+  - ~/.config/alacritty/themes/themes/seashells.yaml
 env:
   # TERM variable
   #
@@ -24,6 +24,8 @@ window:
 title: Booom
 
 startup_mode: Maximized
+
+decorations: buttonless
 
 # Theme https://github.com/alacritty/alacritty-theme
 #
@@ -50,3 +52,7 @@ font:
 
   italic:
     family: Droid Sans Mono
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t@="
+  save_to_clipboard: true
