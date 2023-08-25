@@ -50,6 +50,9 @@ set noshowmode
 
 " Pluging
 call plug#begin('~/.vim/plugged')
+" Solidity
+Plug 'tomlion/vim-solidity'
+
 Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-fugitive'
 "Plug 'aserebryakov/vim-todo-lists'
@@ -74,7 +77,7 @@ Plug 'mhinz/vim-startify'
 "Plug 'posva/vim-vue'
 "Plug 'ap/vim-css-color'
 Plug 'mbbill/undotree'
-Plug 'itchyny/vim-cursorword'
+"Plug 'itchyny/vim-cursorword'
 Plug 'wakatime/vim-wakatime'
 "Plug 'uber/prototool', { 'rtp':'vim/prototool' }
 Plug 'honza/vim-snippets'
@@ -97,6 +100,9 @@ Plug 'rust-lang/rust.vim'
 "Plug 'simnalamburt/vim-mundo'
 "Plug 'rcarriga/nvim-notify'
 "Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+" AI plug
+" Plug 'Exafunction/codeium.vim'
+
 
 
 "bazel
@@ -105,7 +111,7 @@ Plug 'google/vim-maktaba'
 Plug 'ruanyl/vim-gh-line'
 
 Plug 'leafgarland/typescript-vim'
-Plug 'nvim-tree/nvim-web-devicons'
+"Plug 'nvim-tree/nvim-web-devicons'
 "Plug 'romgrk/barbar.nvim'
 
 "Plug 'lukas-reineke/indent-blankline.nvim'
@@ -175,6 +181,19 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 "let g:lightline = {'colorscheme': 'rigel','active': {'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]}, 'component_function': {'gitbranch': 'FugitiveHead'}}
 
@@ -208,7 +227,7 @@ nmap <C-x> <Plug>MarkdownPreview
 
 " fixer npm install -g prettier
 let g:ale_fixter_aliases = {'vue': ['vue', 'javascript']}
-let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'vue': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier'],}
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'vue': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier'], 'typescript': ['prettier', 'eslint'],}
 let g:ale_fix_on_save = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
@@ -243,3 +262,5 @@ set splitright
 
 " command shortcut
 cnoreabbrev BL Git blame
+
+":CocInstall coc-pyright
